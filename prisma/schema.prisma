@@ -17,12 +17,12 @@ model Tech {
   desc          String?
   image         String?
   lavel         String?
-  Catigories    Category[]
+  Category      Category?   @relation(fields: [categoryId], references: [id])
+  categoryId    String
 }
 
 model Category {
-  id      Int  @id @default(autoincrement())
+  id      String  @id @default(cuid())
   name    String
-  techId  String
-  Tech    Tech   @relation(fields: [techId], references: [id])
+  Teches  Tech[]
 }
