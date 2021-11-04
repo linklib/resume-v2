@@ -27,6 +27,12 @@ export const categories = [
           image: "/images/typescript.jpg",
           lavel: "начальный",
         },
+        {
+          name: "Git",
+          desc: "Использую.",
+          image: "/images/git.jpg",
+          lavel: "начинающий",
+        },
       ],
     },
   },
@@ -100,6 +106,12 @@ export const categories = [
           desc: "Использую для простых задач.",
           image: "/images/jquery.jpg",
           lavel: "ниже среднего",
+        },
+        {
+          name: "Bootstrap",
+          desc: "Постоянно использую.",
+          image: "/images/bootstrap.jpg",
+          lavel: "средний",
         },
         {
           name: "Figma",
