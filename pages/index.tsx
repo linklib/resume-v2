@@ -12,17 +12,38 @@ import {
 import { PrismaClient, Tech, Prisma } from "@prisma/client";
 import { info, text } from "../info";
 
-const prisma = new PrismaClient();
+import { gql } from "@apollo/client";
+import apolloClient from "../lib/apollo";
+
+//const prisma = new PrismaClient();
 
 export async function getServerSideProps() {
+  const { data } = await apolloClient.query({
+    query: gql`
+      query TT {
+        teches {
+          id
+          name
+          image
+          lavel
+          categoryId
+          Category {
+            name
+          }
+        }
+      }
+    `,
+  });
+
+  /*
   const teches: Tech[] = await prisma.tech.findMany({
     include: {
       Category: true,
     },
-  });
+  });*/
   return {
     props: {
-      initialTeches: teches,
+      initialTeches: data,
     },
   };
 }
@@ -31,7 +52,7 @@ export const Home = ({ initialTeches }: { initialTeches: any }) => {
   const [teches, setTeches] = useState<any>(initialTeches);
 
   const [nameCat, setNameCat] = useState("");
-
+  //console.log("teches", teches);
   return (
     <>
       <NextSeo
@@ -142,7 +163,7 @@ export const Home = ({ initialTeches }: { initialTeches: any }) => {
         </ButtonGroup>
       </Container>
       <Container>
-        {teches
+        {teches.teches
           .filter((t: any, i: number) => t.Category.name.includes(nameCat))
           .map((t: any, i: number) => (
             <Row key={i} className={`border-start border-info mt-3 p-2 shadow`}>

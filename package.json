@@ -12,6 +12,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.4.16",
     "@prisma/client": "^3.3.0",
     "apollo-server-micro": "^3.5.0",
     "bootstrap": "^5.1.3",
